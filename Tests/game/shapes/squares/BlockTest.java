@@ -3,7 +3,7 @@ package game.shapes.squares;
 import biuoop.DrawSurface;
 import biuoop.GUI;
 import game.environment.GameEnvironment;
-import game.gameFunction.Game;
+import game.gameFunction.GameLevel;
 import game.gameFunction.Initializer;
 import game.miscellaneous.DoubleCompare;
 import game.shapes.circles.Ball;
@@ -15,13 +15,13 @@ import java.awt.Color;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class BlockTest {
-    Game game = new Game();
+    GameLevel game = new GameLevel();
     int numOfReps = 5;
 
     @Test
     public void changeDxWhenTouchesWall() {
         initialize(this.game);
-        Ball ball = new Ball(10 + Game.BORDER_THICKNESS, 10 + Game.BORDER_THICKNESS, 5, Color.WHITE);
+        Ball ball = new Ball(10 + GameLevel.BORDER_THICKNESS, 10 + GameLevel.BORDER_THICKNESS, 5, Color.WHITE);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
 
@@ -40,7 +40,7 @@ class BlockTest {
     @Test
     public void changeDyWhenTouchesWall() {
         initialize(this.game);
-        Ball ball = new Ball(10 + Game.BORDER_THICKNESS, 10 + Game.BORDER_THICKNESS, 5, Color.WHITE);
+        Ball ball = new Ball(10 + GameLevel.BORDER_THICKNESS, 10 + GameLevel.BORDER_THICKNESS, 5, Color.WHITE);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
 
@@ -59,7 +59,7 @@ class BlockTest {
     @Test
     public void testTouchesCornerTopLeft() {
         initialize(this.game);
-        Ball ball = new Ball(7 + Game.BORDER_THICKNESS, 7 + Game.BORDER_THICKNESS, 5, Color.WHITE);
+        Ball ball = new Ball(7 + GameLevel.BORDER_THICKNESS, 7 + GameLevel.BORDER_THICKNESS, 5, Color.WHITE);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
 
@@ -78,7 +78,7 @@ class BlockTest {
     @Test
     public void testAlmostTouchesCornerTopLeftAndDoubleBounce() {
         initialize(this.game);
-        Ball ball = new Ball(13 + Game.BORDER_THICKNESS, 10 + Game.BORDER_THICKNESS, 5, Color.WHITE);
+        Ball ball = new Ball(13 + GameLevel.BORDER_THICKNESS, 10 + GameLevel.BORDER_THICKNESS, 5, Color.WHITE);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
 
@@ -97,8 +97,8 @@ class BlockTest {
     @Test
     public void testTouchesCornerBottomRight() {
         initialize(this.game);
-        Ball ball = new Ball(Game.WIDTH - Game.BORDER_THICKNESS - 7,
-                Game.HEIGHT - Game.BORDER_THICKNESS - 7, 5, Color.WHITE);
+        Ball ball = new Ball(GameLevel.WIDTH - GameLevel.BORDER_THICKNESS - 7,
+                GameLevel.HEIGHT - GameLevel.BORDER_THICKNESS - 7, 5, Color.WHITE);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
 
@@ -176,7 +176,7 @@ class BlockTest {
         game.run(reps);
     }
 
-    public void initialize(Game game) {
+    public void initialize(GameLevel game) {
         Initializer initialize = new Initializer();             // create an initializer
         initialize.setGame(this.game);                          // add a reference to the game
 

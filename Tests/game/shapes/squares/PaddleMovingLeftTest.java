@@ -4,7 +4,7 @@
 package game.shapes.squares;
 
 import biuoop.KeyboardSensor;
-import game.gameFunction.Game;
+import game.gameFunction.GameLevel;
 import game.gameFunction.Initializer;
 import game.miscellaneous.DoubleCompare;
 import game.shapes.circles.Ball;
@@ -15,15 +15,15 @@ import java.awt.Color;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PaddleMovingLeftTest {
-    Game game = new Game();
+    GameLevel game = new GameLevel();
     int numOfReps = 3;
 
     /* the paddle is moving left */
     @Test
     public void paddleMovingTowardsStraightToBall() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = 20;
@@ -45,14 +45,14 @@ public class PaddleMovingLeftTest {
     @Test
     public void paddleMovingBallHitsBottom() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = - 15;
         double originalDy = - 15;
 
-        Ball ball = new Ball((double) Game.WIDTH / 2, paddleY + 40, 5, Color.WHITE);
+        Ball ball = new Ball((double) GameLevel.WIDTH / 2, paddleY + 40, 5, Color.WHITE);
         ball.setVelocity(originalDx, originalDy);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
@@ -68,8 +68,8 @@ public class PaddleMovingLeftTest {
     @Test
     public void paddleMovingTowardsStraightBallAtAngle() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = 10;
@@ -91,8 +91,8 @@ public class PaddleMovingLeftTest {
     @Test
     public void testMovingToCatchClipping() {
         initialize(this.game);
-        double xPaddle = Game.WIDTH - (Game.BORDER_THICKNESS + 320);
-        double yPaddle = Game.HEIGHT - (20 + Game.BORDER_THICKNESS + Game.OFFSET);
+        double xPaddle = GameLevel.WIDTH - (GameLevel.BORDER_THICKNESS + 320);
+        double yPaddle = GameLevel.HEIGHT - (20 + GameLevel.BORDER_THICKNESS + GameLevel.OFFSET);
         initializePaddle(xPaddle, yPaddle, game.getGui().getKeyboardSensor());
 
         double originalDx = 0;
@@ -102,7 +102,7 @@ public class PaddleMovingLeftTest {
         // so original ball coordinates are 400-45, 560-30
         // each paddle step is 7 so that 400 - 21
 
-        Ball ball = new Ball((double) Game.WIDTH / 2, 500, 5, Color.WHITE);
+        Ball ball = new Ball((double) GameLevel.WIDTH / 2, 500, 5, Color.WHITE);
         ball.setVelocity(originalDx, originalDy);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
@@ -116,7 +116,7 @@ public class PaddleMovingLeftTest {
     }
 
 
-    public void initialize(Game game) {
+    public void initialize(GameLevel game) {
         Initializer initialize = new Initializer();             // create an initializer
         initialize.setGame(game);                          // add a reference to the game
 

@@ -1,7 +1,7 @@
 // 206573289 Omri Levi
 
 
-import game.gameFunction.Game;
+import game.gameFunction.GameLevel;
 
 /**
  * This class is the main entry point for the game
@@ -16,7 +16,7 @@ public class Ass6Game {
      * @param args Command line arguments (not used).
      */
     public static void main(String[] args) {
-        Game game = new Game();
+        GameLevel game = new GameLevel();
         game.initialize();
         game.run();
     }

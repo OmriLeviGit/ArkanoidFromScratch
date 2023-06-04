@@ -4,7 +4,7 @@
 package game.environment;
 
 import biuoop.DrawSurface;
-import game.gameFunction.Game;
+import game.gameFunction.GameLevel;
 
 /**
  * The Sprite interface represents an object that can be drawn on a surface and notified of time passing.
@@ -29,7 +29,7 @@ public interface Sprite {
      *
      * @param g the game to add the sprite to
      */
-    default void addToGame(Game g) {
+    default void addToGame(GameLevel g) {
         g.addSprite(this);
     }
 }

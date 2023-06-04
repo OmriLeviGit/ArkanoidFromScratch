@@ -1,7 +1,7 @@
 package game.gameFunction;
 
 class GameTest {
-    Game game = new Game();
+    GameLevel game = new GameLevel();
 
 /*
     @Test

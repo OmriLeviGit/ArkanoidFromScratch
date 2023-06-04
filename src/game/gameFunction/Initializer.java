@@ -22,7 +22,7 @@ import java.util.Random;
  * The Initializer class is a helper class used for initializing various game objects.
  */
 public class Initializer {
-    private Game game;
+    private GameLevel game;
 
 
     /**
@@ -30,7 +30,7 @@ public class Initializer {
      *
      * @param game the game
      */
-    public void setGame(Game game) {
+    public void setGame(GameLevel game) {
         this.game = game;
     }
 
@@ -40,7 +40,7 @@ public class Initializer {
      * @param color the color of the background
      */
     public void background(Color color) {
-        Rectangle background = new Rectangle(Game.WIDTH, Game.HEIGHT);
+        Rectangle background = new Rectangle(GameLevel.WIDTH, GameLevel.HEIGHT);
         background.setColor(color);
         background.addToGame(this.game);
     }
@@ -84,8 +84,8 @@ public class Initializer {
     public void paddle(int paddleWidth, int paddleHeight, KeyboardSensor keyboard) {
 
         // center the paddle and adjust paddleHeight to match the border
-        double xPaddle = (double) (Game.WIDTH - paddleWidth) / 2;
-        double yPaddle = Game.HEIGHT - (paddleHeight + Game.BORDER_THICKNESS);
+        double xPaddle = (double) (GameLevel.WIDTH - paddleWidth) / 2;
+        double yPaddle = GameLevel.HEIGHT - (paddleHeight + GameLevel.BORDER_THICKNESS);
 
         // create paddle
         Rectangle paddleShape = new Rectangle(xPaddle, yPaddle, paddleWidth, paddleHeight);
@@ -110,7 +110,7 @@ public class Initializer {
         int radius = 5;                             // radius of the ball
         int angleRange = 30;                        // the angle will be randomized between -angleRange and angleRange
 
-        double ballX = (double) Game.WIDTH / 2;                                 // spawn at the center
+        double ballX = (double) GameLevel.WIDTH / 2;                                 // spawn at the center
         double ballY = paddleHeight - radius * 2;      // spawn above the paddle
         Point point = new Point(ballX, ballY);
 
@@ -138,8 +138,8 @@ public class Initializer {
 
         // initialize blocks
         final int maxBlocksInRow = 15;                                          // more than that will overfill rows
-        final double legalWidth = Game.WIDTH - Game.BORDER_THICKNESS * 2;       // game width without borders
-        final double legalHeight = Game.WIDTH - Game.BORDER_THICKNESS * 2;      // game height without borders
+        final double legalWidth = GameLevel.WIDTH - GameLevel.BORDER_THICKNESS * 2;       // game width without borders
+        final double legalHeight = GameLevel.WIDTH - GameLevel.BORDER_THICKNESS * 2;      // game height without borders
 
         int numOfBlocks = 12;                                   // amount of blocks in the longest row
         int numOfRows = 5;                                      // amount of rows required for the assignment
@@ -154,8 +154,8 @@ public class Initializer {
             for (int j = 0; j < numOfBlocks - i; j++) {
 
                 // set current x value starting from the right of the screen
-                double currentPointX = Game.WIDTH - Game.BORDER_THICKNESS - blockWidth * (j + 1);
-                double currentPointY = Game.BORDER_THICKNESS + blockHeight * (i + heightFromCeiling);
+                double currentPointX = GameLevel.WIDTH - GameLevel.BORDER_THICKNESS - blockWidth * (j + 1);
+                double currentPointY = GameLevel.BORDER_THICKNESS + blockHeight * (i + heightFromCeiling);
                 Point upperLeft = new Point(currentPointX, currentPointY);
                 Block block = new Block(upperLeft, blockWidth, blockHeight);
 
@@ -178,7 +178,7 @@ public class Initializer {
      * @param ballRemover the ball remover
      */
     public void deathRegion(BallRemover ballRemover) {
-        Block deathRegion = new Block(new Point(0.0, Game.HEIGHT), Game.WIDTH, Game.OFFSET);
+        Block deathRegion = new Block(new Point(0.0, GameLevel.HEIGHT), GameLevel.WIDTH, GameLevel.OFFSET);
         deathRegion.getCollisionRectangle().setColor(Color.RED);
         deathRegion.addHitListener(ballRemover);
         deathRegion.addToGame(this.game);

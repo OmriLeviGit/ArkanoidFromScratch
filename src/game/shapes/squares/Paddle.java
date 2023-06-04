@@ -7,7 +7,7 @@ import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
 import game.environment.Collidable;
 import game.environment.Sprite;
-import game.gameFunction.Game;
+import game.gameFunction.GameLevel;
 import game.shapes.circles.Ball;
 import game.shapes.circles.Point;
 import game.shapes.circles.Velocity;
@@ -76,7 +76,7 @@ public class Paddle implements Collidable, Sprite {
         double upperLeftX = this.rectangle.getX();
         double upperLeftY = this.rectangle.getY();
         double xAfterMoving = upperLeftX - stepSize;
-        double leftBorder = Game.BORDER_THICKNESS + Game.OFFSET;
+        double leftBorder = GameLevel.BORDER_THICKNESS + GameLevel.OFFSET;
 
         upperLeftX = Math.max(leftBorder, xAfterMoving);    // makes sure the paddle does not exit the boundaries
 
@@ -99,7 +99,7 @@ public class Paddle implements Collidable, Sprite {
         double xAfterMoving = upperLeftX + stepSize;
 
         // offset the right border using the width of the paddle
-        double rightBorder = Game.WIDTH - (Game.BORDER_THICKNESS + this.rectangle.getWidth() + Game.OFFSET);
+        double rightBorder = GameLevel.WIDTH - (GameLevel.BORDER_THICKNESS + this.rectangle.getWidth() + GameLevel.OFFSET);
 
         upperLeftX = Math.min(xAfterMoving, rightBorder);   // makes sure the paddle does not exit the boundaries
 
@@ -212,7 +212,7 @@ public class Paddle implements Collidable, Sprite {
      * @param g the game to add the paddle to.
      */
     @Override
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
         g.addCollidable(this);
     }

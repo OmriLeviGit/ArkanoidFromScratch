@@ -1,7 +1,7 @@
 package game.shapes.squares;
 
 import biuoop.KeyboardSensor;
-import game.gameFunction.Game;
+import game.gameFunction.GameLevel;
 import game.gameFunction.Initializer;
 import game.miscellaneous.DoubleCompare;
 import game.shapes.circles.Ball;
@@ -14,19 +14,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PaddleStaticTest {
     int numOfReps = 2;
-    Game game = new Game();
+    GameLevel game = new GameLevel();
 
     @Test
     public void ballHitsRegion1NoDx() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double ballOriginalDx = 0;
         double ballOriginalDy = 20;
 
-        Ball ball = new Ball(paddleX + 9, (double) Game.HEIGHT / 2 - 10, 5, Color.WHITE);
+        Ball ball = new Ball(paddleX + 9, (double) GameLevel.HEIGHT / 2 - 10, 5, Color.WHITE);
         ball.setVelocity(ballOriginalDx, ballOriginalDy);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
@@ -46,14 +46,14 @@ class PaddleStaticTest {
     @Test
     public void ballHitsRegion2NoDx() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double ballOriginalDx = 0;
         double ballOriginalDy = 20;
 
-        Ball ball = new Ball(paddleX + 10 + 9, (double) Game.HEIGHT / 2 - 10, 5, Color.WHITE);
+        Ball ball = new Ball(paddleX + 10 + 9, (double) GameLevel.HEIGHT / 2 - 10, 5, Color.WHITE);
         ball.setVelocity(ballOriginalDx, ballOriginalDy);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
@@ -73,14 +73,14 @@ class PaddleStaticTest {
     @Test
     public void ballHitsRegion3NoDx() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double ballOriginalDx = 0;
         double ballOriginalDy = 20;
 
-        Ball ball = new Ball(paddleX + 9 + 18 * 2, (double) Game.HEIGHT / 2 - 10, 5, Color.WHITE);
+        Ball ball = new Ball(paddleX + 9 + 18 * 2, (double) GameLevel.HEIGHT / 2 - 10, 5, Color.WHITE);
         ball.setVelocity(ballOriginalDx, ballOriginalDy);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
@@ -97,14 +97,14 @@ class PaddleStaticTest {
     @Test
     public void ballHitsRegion4NoDx() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double ballOriginalDx = 0;
         double ballOriginalDy = 20;
 
-        Ball ball = new Ball(paddleX + 9 + 18 * 3, (double) Game.HEIGHT / 2 - 10, 5, Color.WHITE);
+        Ball ball = new Ball(paddleX + 9 + 18 * 3, (double) GameLevel.HEIGHT / 2 - 10, 5, Color.WHITE);
         ball.setVelocity(ballOriginalDx, ballOriginalDy);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
@@ -125,14 +125,14 @@ class PaddleStaticTest {
     @Test
     public void ballHitsRegion5NoDx() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double ballOriginalDx = 0;
         double ballOriginalDy = 20;
 
-        Ball ball = new Ball(paddleX + 9 + 18 * 4, (double) Game.HEIGHT / 2 - 10, 5, Color.WHITE);
+        Ball ball = new Ball(paddleX + 9 + 18 * 4, (double) GameLevel.HEIGHT / 2 - 10, 5, Color.WHITE);
         ball.setVelocity(ballOriginalDx, ballOriginalDy);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
@@ -152,15 +152,15 @@ class PaddleStaticTest {
     @Test
     public void ballHitsRegionWithDx() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = 15;
         double originalDy = 15;
 
         for (int i = 0; i < 5; i++) {
-            Ball ball = new Ball(paddleX - 10 + 20 * i, (double) Game.HEIGHT / 2 - 10, 5, Color.WHITE);
+            Ball ball = new Ball(paddleX - 10 + 20 * i, (double) GameLevel.HEIGHT / 2 - 10, 5, Color.WHITE);
             ball.setVelocity(originalDx, originalDy);
             ball.setGameEnvironment(game.getEnvironment());
             ball.addToGame(game);
@@ -185,8 +185,8 @@ class PaddleStaticTest {
     @Test
     public void straightBallHitsFromLeftPassingThrough() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = 7;
@@ -208,8 +208,8 @@ class PaddleStaticTest {
     @Test
     public void straightBallHitsFromLeftHittingBorderExactly() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = 10;
@@ -231,8 +231,8 @@ class PaddleStaticTest {
     @Test
     public void straightBallHitsFromRightPassingThrough() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = - 7;
@@ -254,8 +254,8 @@ class PaddleStaticTest {
     @Test
     public void ballHitsFromRightAngle() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = - 15;
@@ -277,14 +277,14 @@ class PaddleStaticTest {
     @Test
     public void ballHitsFromTheBottomStraight() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = 0;
         double originalDy = - 15;
 
-        Ball ball = new Ball((double) Game.WIDTH / 2, paddleY + 40, 5, Color.WHITE);
+        Ball ball = new Ball((double) GameLevel.WIDTH / 2, paddleY + 40, 5, Color.WHITE);
         ball.setVelocity(originalDx, originalDy);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
@@ -300,14 +300,14 @@ class PaddleStaticTest {
     @Test
     public void ballHitsFromBottomAngle() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = - 15;
         double originalDy = - 15;
 
-        Ball ball = new Ball((double) Game.WIDTH / 2, paddleY + 40, 5, Color.WHITE);
+        Ball ball = new Ball((double) GameLevel.WIDTH / 2, paddleY + 40, 5, Color.WHITE);
         ball.setVelocity(originalDx, originalDy);
         ball.setGameEnvironment(game.getEnvironment());
         ball.addToGame(game);
@@ -323,8 +323,8 @@ class PaddleStaticTest {
     @Test
     public void ballHitsFromTheTopLeftCorner() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = 15;
@@ -351,8 +351,8 @@ class PaddleStaticTest {
     @Test
     public void ballHitsFromTheBottomRightCorner() {
         initialize(this.game);
-        int paddleX = Game.WIDTH / 2 - 45;
-        int paddleY = Game.HEIGHT / 2;
+        int paddleX = GameLevel.WIDTH / 2 - 45;
+        int paddleY = GameLevel.HEIGHT / 2;
         initializePaddle(paddleX, paddleY, game.getGui().getKeyboardSensor());
 
         double originalDx = - 15;
@@ -371,7 +371,7 @@ class PaddleStaticTest {
         assertTrue(VelocitiesEqual(expectedV, actualV));
     }
 
-    public void initialize(Game game) {
+    public void initialize(GameLevel game) {
         Initializer initialize = new Initializer();             // create an initializer
         initialize.setGame(game);                          // add a reference to the game
 

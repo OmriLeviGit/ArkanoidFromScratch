@@ -26,6 +26,12 @@ public class ScoreIndicator implements Sprite {
     @Override
     public void drawOn(DrawSurface surface) {
         surface.setColor(Color.BLACK);
-        surface.drawText(Game.WIDTH / 2 - 13, Game.BORDER_THICKNESS / 2 + 7, "Score: " + score.getValue(), 15);
+
+        String text = "Score: " + score.getValue();
+        int textSize = 15;
+        int xText = (GameLevel.WIDTH - textSize * text.length() / 2) / 2;
+        int yText = (GameLevel.BORDER_THICKNESS + textSize) / 2;
+
+        surface.drawText(xText, yText, text, textSize);
     }
 }

@@ -8,6 +8,7 @@ import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import game.animation.Animation;
 import game.animation.AnimationRunner;
+import game.animation.CountdownAnimation;
 import game.animation.PauseScreen;
 import game.environment.Collidable;
 import game.environment.GameEnvironment;
@@ -29,7 +30,7 @@ import java.awt.Color;
  * It also includes methods for adding a collidable or a sprite, initializing the game, and running the game loop.
  * </p>
  */
-public class Game implements Animation {
+public class GameLevel implements Animation {
     /**
      * The constant WIDTH represents the width of the game.
      */
@@ -91,7 +92,7 @@ public class Game implements Animation {
         ScoreTrackingListener scoreTracker = new ScoreTrackingListener(this.score);     // the score tracker
 
         initialize.background(Color.BLACK);
-        initialize.borders(new Rectangle(Game.WIDTH, Game.HEIGHT), Game.BORDER_THICKNESS);
+        initialize.borders(new Rectangle(GameLevel.WIDTH, GameLevel.HEIGHT), GameLevel.BORDER_THICKNESS);
         initialize.paddle(90, 20, keyboard);
         initialize.randomBalls(numOfBalls, this.environment, this.paddle.getCollisionRectangle().getY());
         initialize.deathRegion(new BallRemover(this, this.ballsRemained));
@@ -107,6 +108,7 @@ public class Game implements Animation {
      * Start running the game.
      */
     public void run() {
+        //this.runner.run(new CountdownAnimation(2, 3, this.sprites));    // countdown before turn starts. //tODO
         this.running = true;
         this.runner.run(this);
     }
@@ -164,6 +166,7 @@ public class Game implements Animation {
 
         if (this.keyboard.isPressed("p")) {
             this.runner.run(new PauseScreen(this.keyboard));
+            this.runner.run(new CountdownAnimation(2, 3, this.sprites));    // countdown before turn starts.
         }
 
         if (this.ballsRemained.getValue() == 0) {

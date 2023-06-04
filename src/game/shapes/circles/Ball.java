@@ -8,7 +8,7 @@ import game.environment.Collidable;
 import game.environment.CollisionInfo;
 import game.environment.GameEnvironment;
 import game.environment.Sprite;
-import game.gameFunction.Game;
+import game.gameFunction.GameLevel;
 import game.shapes.lines.Line;
 import java.awt.Color;
 
@@ -206,7 +206,7 @@ public class Ball implements Sprite {
      *
      * @param game the game
      */
-    public void removeFromGame(Game game) {
+    public void removeFromGame(GameLevel game) {
         game.removeSprite(this);
     }
 }

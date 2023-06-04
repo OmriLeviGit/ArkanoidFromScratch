@@ -36,19 +36,6 @@ public class AnimationRunner {
             if (milliSecondLeftToSleep > 0) {
                 sleeper.sleepFor(milliSecondLeftToSleep);
             }
-/*
-            if (this.blocksRemained.getValue() == 0) {
-                score.increase(100);                    // Clearing an entire level is worth another 100 points
-                gui.close();
-                return;
-            }
-
-            if (this.ballsRemained.getValue() == 0) {
-                gui.close();
-                return;
-            }
-
- */
         }
     }
 

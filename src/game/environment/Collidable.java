@@ -3,7 +3,7 @@
 
 package game.environment;
 
-import game.gameFunction.Game;
+import game.gameFunction.GameLevel;
 import game.shapes.circles.Ball;
 import game.shapes.circles.Point;
 import game.shapes.circles.Velocity;
@@ -35,7 +35,7 @@ public interface Collidable {
      *
      * @param g the game to add the collidable to
      */
-    default void addToGame(Game g) {
+    default void addToGame(GameLevel g) {
         g.addCollidable(this);
     }
 }

@@ -4,7 +4,7 @@
 package game.shapes.squares;
 
 import biuoop.DrawSurface;
-import game.gameFunction.Game;
+import game.gameFunction.GameLevel;
 import game.environment.Collidable;
 import game.environment.Sprite;
 import game.listener.HitListener;
@@ -95,7 +95,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
      * @param g the game environment to add the block to.
      */
     @Override
-    public void addToGame(Game g) {
+    public void addToGame(GameLevel g) {
         g.addSprite(this);
         g.addCollidable(this);
     }
@@ -123,7 +123,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
      *
      * @param game the game
      */
-    public void removeFromGame(Game game) {
+    public void removeFromGame(GameLevel game) {
         game.removeCollidable(this);
         game.removeSprite(this);
     }

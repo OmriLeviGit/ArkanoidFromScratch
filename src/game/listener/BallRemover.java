@@ -4,7 +4,7 @@
 package game.listener;
 
 import game.gameFunction.Counter;
-import game.gameFunction.Game;
+import game.gameFunction.GameLevel;
 import game.shapes.circles.Ball;
 import game.shapes.squares.Block;
 
@@ -12,7 +12,7 @@ import game.shapes.squares.Block;
  * The Ball remover is in charge of removing balls, and updating a ball counter.
  */
 public class BallRemover implements HitListener {
-    private final Game game;
+    private final GameLevel game;
     private final Counter remainingBalls;
 
     /**
@@ -21,7 +21,7 @@ public class BallRemover implements HitListener {
      * @param game        the game
      * @param ballCounter the ball counter
      */
-    public BallRemover(Game game, Counter ballCounter) {
+    public BallRemover(GameLevel game, Counter ballCounter) {
         this.game = game;
         this.remainingBalls = ballCounter;
     }

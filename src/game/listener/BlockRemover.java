@@ -4,7 +4,7 @@
 package game.listener;
 
 import game.gameFunction.Counter;
-import game.gameFunction.Game;
+import game.gameFunction.GameLevel;
 import game.shapes.circles.Ball;
 import game.shapes.squares.Block;
 
@@ -12,7 +12,7 @@ import game.shapes.squares.Block;
  * The block remover is in charge of removing blocks from the game, and keeping count of the number of remaining blocks.
  */
 public class BlockRemover implements HitListener {
-    private final Game game;
+    private final GameLevel game;
     private final Counter remainingBlocks;
 
     /**
@@ -21,7 +21,7 @@ public class BlockRemover implements HitListener {
      * @param game          the game
      * @param removedBlocks the removed blocks
      */
-    public BlockRemover(Game game, Counter removedBlocks) {
+    public BlockRemover(GameLevel game, Counter removedBlocks) {
         this.game = game;
         this.remainingBlocks = removedBlocks;
     }

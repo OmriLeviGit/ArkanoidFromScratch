@@ -96,6 +96,8 @@ public class Ball implements Sprite {
     public void drawOn(DrawSurface surface) {
         surface.setColor(this.getColor());
         surface.fillCircle(this.getX(), this.getY(), this.radius);
+        surface.setColor(Color.BLACK);
+        surface.drawCircle(this.getX(), this.getY(), this.radius);
     }
 
     /**

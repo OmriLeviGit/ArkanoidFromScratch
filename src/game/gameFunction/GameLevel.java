@@ -14,13 +14,20 @@ import game.environment.Collidable;
 import game.environment.GameEnvironment;
 import game.environment.Sprite;
 import game.environment.SpriteCollection;
+import game.indicators.LivesIndicator;
+import game.indicators.NameIndicator;
+import game.indicators.ScoreIndicator;
+import game.levels.LevelInformation;
 import game.listener.BallRemover;
 import game.listener.BlockRemover;
 import game.listener.ScoreTrackingListener;
+import game.shapes.circles.Ball;
+import game.shapes.circles.Point;
+import game.shapes.squares.Block;
 import game.shapes.squares.Paddle;
 import game.shapes.squares.Rectangle;
 
-import java.awt.Color;
+import java.awt.*;
 
 
 /**
@@ -48,17 +55,80 @@ public class GameLevel implements Animation {
      */
     public static final int OFFSET = 3;
 
-    private final SpriteCollection sprites = new SpriteCollection();
-    private final GameEnvironment environment = new GameEnvironment();
+    private final SpriteCollection sprites = new SpriteCollection();//
+    private final GameEnvironment environment = new GameEnvironment();//
+    private final Counter ballsRemained = new Counter();//
+    private final Counter blocksRemained = new Counter();//
     private final GUI gui = new GUI("Game", WIDTH, HEIGHT);
     private final Counter score = new Counter();
-    private final Counter ballsRemained = new Counter();
-    private final Counter blocksRemained = new Counter();
     private final KeyboardSensor keyboard = gui.getKeyboardSensor();
-    private Paddle paddle;
+    private Paddle paddle;//
+    private final LevelInformation levelInfo;
 
     private final AnimationRunner runner = new AnimationRunner(gui, 60);
     private boolean running;
+
+    public GameLevel(LevelInformation levelInfo) {
+        this.levelInfo = levelInfo;
+    }
+
+    /**
+     * Initializes the game by creating and adding the game blocks, balls, and a paddle.
+     */
+    public void initialize() {
+        //levelInfo.levelName();
+
+        // add background
+        levelInfo.getBackground().addToGame(this);
+
+        // add paddle
+        this.paddle = new Paddle(levelInfo.paddleWidth(), levelInfo.paddleSpeed(), this.keyboard);
+        this.paddle.addToGame(this);
+
+        // add balls to the game
+        Point ballPoint = new Point((double) WIDTH / 2, paddle.getCollisionRectangle().getY() - GameLevel.OFFSET * 2);
+        ballsRemained.increase(levelInfo.numberOfBalls());
+
+        for (int i = 0; i < levelInfo.numberOfBalls(); i++) {
+            Ball ball = new Ball(ballPoint, 5, Color.WHITE);                // create ball
+            ball.setVelocity(levelInfo.initialBallVelocities().get(i));     // set velocity
+            ball.setGameEnvironment(environment);                           // assign game environment
+            ball.addToGame(this);                                           // add to game
+        }
+
+        // add borders
+        createBorders(new Rectangle(GameLevel.WIDTH, GameLevel.HEIGHT), GameLevel.BORDER_THICKNESS);
+
+        // add blocks
+        BlockRemover blockRemover = new BlockRemover(this, this.blocksRemained);        // the blocker remover
+        ScoreTrackingListener scoreTracker = new ScoreTrackingListener(this.score);     // the score tracker
+        blocksRemained.increase(levelInfo.numberOfBlocksToRemove());
+
+        for (Block block : levelInfo.blocks()) {
+            block.addToGame(this);
+            block.addHitListener(blockRemover);
+            block.addHitListener(scoreTracker);
+        }
+
+        // add death region
+        Block deathRegion = new Block(new Point(0.0, GameLevel.HEIGHT), GameLevel.WIDTH, GameLevel.OFFSET);
+        deathRegion.getCollisionRectangle().setColor(Color.RED);
+        deathRegion.addHitListener(new BallRemover(this, this.ballsRemained));
+        deathRegion.addToGame(this);
+
+        // add score indicator
+        ScoreIndicator scoreIndicator = new ScoreIndicator(this.score);
+        scoreIndicator.addToGame(this);
+
+        LivesIndicator livesIndicator = new LivesIndicator(1);
+        livesIndicator.addToGame(this);
+
+        NameIndicator nameIndicator = new NameIndicator(this.levelInfo.levelName());
+        nameIndicator.addToGame(this);
+
+
+    }
+
 
     /**
      * Adds a collidable object to the game environment.
@@ -78,37 +148,12 @@ public class GameLevel implements Animation {
         sprites.addSprite(s);
     }
 
-    /**
-     * Initializes the game by creating and adding the game's blocks, ball(s), and paddle to the game.
-     */
-    public void initialize() {
-        Initializer initialize = new Initializer();         // create an initializer
-        initialize.setGame(this);                           // add a reference to the game
-
-        int numOfBalls = 3;     // number of balls in the game
-        int numOfBlocks;        // number of blocks in the game
-
-        BlockRemover blockRemover = new BlockRemover(this, this.blocksRemained);        // the blocker remover
-        ScoreTrackingListener scoreTracker = new ScoreTrackingListener(this.score);     // the score tracker
-
-        initialize.background(Color.BLACK);
-        initialize.borders(new Rectangle(GameLevel.WIDTH, GameLevel.HEIGHT), GameLevel.BORDER_THICKNESS);
-        initialize.paddle(90, 20, keyboard);
-        initialize.randomBalls(numOfBalls, this.environment, this.paddle.getCollisionRectangle().getY());
-        initialize.deathRegion(new BallRemover(this, this.ballsRemained));
-        initialize.scoreIndicator(this.score);
-
-        numOfBlocks = initialize.gameBlocks(blockRemover, scoreTracker);
-
-        ballsRemained.increase(numOfBalls);
-        blocksRemained.increase(numOfBlocks);
-    }
 
     /**
      * Start running the game.
      */
     public void run() {
-        //this.runner.run(new CountdownAnimation(2, 3, this.sprites));    // countdown before turn starts. //tODO
+        //this.runner.run(new CountdownAnimation(2, 3, this.sprites));    // countdown before turn starts. //TODO
         this.running = true;
         this.runner.run(this);
     }
@@ -183,4 +228,34 @@ public class GameLevel implements Animation {
     public boolean shouldStop() {
         return !this.running;
     }
+
+    /**
+     * Creates an array of blocks representing the game borders, and add it to the game.
+     *
+     * @param rectangle the rectangle
+     * @param thickness the thickness
+     */
+    public void createBorders(Rectangle rectangle, double thickness) {
+        double x = rectangle.getX();
+        double y = rectangle.getY();
+
+        Point leftBorderPoint = new Point(x, y + thickness);
+        Point rightBorderPoint = new Point(x + rectangle.getWidth() - thickness, y + thickness);
+
+        Block[] borderArray = {
+                new Block(rectangle.getUpperLeft(), rectangle.getWidth(), thickness * 2),   // top border
+                new Block(rightBorderPoint, thickness, rectangle.getHeight() - thickness),  // left border
+                new Block(leftBorderPoint, thickness, rectangle.getHeight() - thickness),   // right border
+        };
+
+        for (Block border : borderArray) {
+            border.getCollisionRectangle().setColor(Color.GRAY);
+            border.addToGame(this);
+        }
+
+        Block scorePlaceholder = new Block(rectangle.getUpperLeft(), rectangle.getWidth(), thickness);
+        scorePlaceholder.getCollisionRectangle().setColor(Color.ORANGE);
+        scorePlaceholder.addToGame(this);
+    }
+
 }

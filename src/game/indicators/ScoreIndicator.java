@@ -1,10 +1,12 @@
 // 206573289 Omri Levi
 
 
-package game.gameFunction;
+package game.indicators;
 
 import biuoop.DrawSurface;
 import game.environment.Sprite;
+import game.gameFunction.Counter;
+import game.gameFunction.GameLevel;
 
 import java.awt.Color;
 
@@ -19,7 +21,7 @@ public class ScoreIndicator implements Sprite {
      *
      * @param score the score
      */
-    ScoreIndicator(Counter score) {
+    public ScoreIndicator(Counter score) {
         this.score = score;
     }
 

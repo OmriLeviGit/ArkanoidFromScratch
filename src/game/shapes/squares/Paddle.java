@@ -25,17 +25,26 @@ public class Paddle implements Collidable, Sprite {
     private Rectangle rectangle;                // shape of the paddle
     private final KeyboardSensor keyboard;      // the keyboard sensor
     private final Color color = Color.YELLOW;   // the color of the paddle
-    private final int stepSize = 7;             // how many pixels the paddle moves in each passage of time.
+    private final int speed;                    // how many pixels the paddle moves in each passage of time.
 
     /**
      * Constructor for the Paddle class.
      *
-     * @param rectangle the rectangle representing the paddle
      * @param keyboard  the keyboard sensor used to move the paddle
      */
-    public Paddle(Rectangle rectangle, KeyboardSensor keyboard) {
-        this.rectangle = rectangle;
+    public Paddle(int paddleWidth, int speed, KeyboardSensor keyboard) {
+        int paddleHeight = 20;                      // the height of the paddle
+
+        // center the paddle to match the border
+        double xPaddle = (double) (GameLevel.WIDTH - paddleWidth) / 2;
+        double yPaddle = GameLevel.HEIGHT - (paddleHeight + GameLevel.BORDER_THICKNESS);
+
+        // create paddle
+        this.rectangle = new Rectangle(xPaddle, yPaddle, paddleWidth, paddleHeight);
+        this.rectangle.setColor(Color.yellow);
+        this.speed = speed;
         this.keyboard = keyboard;
+
     }
 
     /**
@@ -75,7 +84,7 @@ public class Paddle implements Collidable, Sprite {
     public void moveLeft() {
         double upperLeftX = this.rectangle.getX();
         double upperLeftY = this.rectangle.getY();
-        double xAfterMoving = upperLeftX - stepSize;
+        double xAfterMoving = upperLeftX - speed;
         double leftBorder = GameLevel.BORDER_THICKNESS + GameLevel.OFFSET;
 
         upperLeftX = Math.max(leftBorder, xAfterMoving);    // makes sure the paddle does not exit the boundaries
@@ -96,7 +105,7 @@ public class Paddle implements Collidable, Sprite {
     public void moveRight() {
         double upperLeftX = this.rectangle.getX();
         double upperLeftY = this.rectangle.getY();
-        double xAfterMoving = upperLeftX + stepSize;
+        double xAfterMoving = upperLeftX + speed;
 
         // offset the right border using the width of the paddle
         double rightBorder = GameLevel.WIDTH - (GameLevel.BORDER_THICKNESS + this.rectangle.getWidth() + GameLevel.OFFSET);

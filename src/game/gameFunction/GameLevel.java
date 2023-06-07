@@ -4,37 +4,36 @@
 package game.gameFunction;
 
 import biuoop.DrawSurface;
-import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import game.animation.Animation;
 import game.animation.AnimationRunner;
 import game.animation.CountdownAnimation;
+import game.animation.KeyPressStoppableAnimation;
 import game.animation.PauseScreen;
-import game.environment.Collidable;
-import game.environment.GameEnvironment;
-import game.environment.Sprite;
-import game.environment.SpriteCollection;
-import game.indicators.LivesIndicator;
-import game.indicators.NameIndicator;
-import game.indicators.ScoreIndicator;
+import game.gameFunction.environment.Collidable;
+import game.gameFunction.environment.GameEnvironment;
+import game.gameFunction.environment.Sprite;
+import game.gameFunction.environment.SpriteCollection;
+import game.gameFunction.indicatorsAndCounters.Counter;
+import game.gameFunction.indicatorsAndCounters.NameIndicator;
+import game.gameFunction.indicatorsAndCounters.ScoreIndicator;
 import game.levels.LevelInformation;
-import game.listener.BallRemover;
-import game.listener.BlockRemover;
-import game.listener.ScoreTrackingListener;
+import game.gameFunction.listeners.BallRemover;
+import game.gameFunction.listeners.BlockRemover;
+import game.gameFunction.listeners.ScoreTrackingListener;
 import game.shapes.circles.Ball;
 import game.shapes.circles.Point;
 import game.shapes.squares.Block;
 import game.shapes.squares.Paddle;
 import game.shapes.squares.Rectangle;
 
-import java.awt.*;
+import java.awt.Color;
 
 
 /**
- * The Game class represents a game that includes a collection of sprites, a game environment and the GUI.
+ * The GameLevel class represents each level. includes a collection of sprites, a game environment and the GUI.
  * <p>
- * The game includes constants for its width, height, border thickness, and offset.
- * It also includes methods for adding a collidable or a sprite, initializing the game, and running the game loop.
+ * In addition, the class includes constants for its width, height, border thickness, and offset.
  * </p>
  */
 public class GameLevel implements Animation {
@@ -55,28 +54,42 @@ public class GameLevel implements Animation {
      */
     public static final int OFFSET = 3;
 
-    private final SpriteCollection sprites = new SpriteCollection();//
-    private final GameEnvironment environment = new GameEnvironment();//
-    private final Counter ballsRemained = new Counter();//
-    private final Counter blocksRemained = new Counter();//
-    private final GUI gui = new GUI("Game", WIDTH, HEIGHT);
-    private final Counter score = new Counter();
-    private final KeyboardSensor keyboard = gui.getKeyboardSensor();
-    private Paddle paddle;//
+    private final SpriteCollection sprites = new SpriteCollection();
+    private final GameEnvironment environment = new GameEnvironment();
+    private final Counter score;
+    private final Counter ballsRemained;
+    private final Counter blocksRemained;
     private final LevelInformation levelInfo;
-
-    private final AnimationRunner runner = new AnimationRunner(gui, 60);
+    private final KeyboardSensor keyboard;
+    private final AnimationRunner animationRunner;
+    private Paddle paddle;
     private boolean running;
 
-    public GameLevel(LevelInformation levelInfo) {
+
+    /**
+     * Instantiates a new Game level.
+     *
+     * @param levelInfo       the level info
+     * @param keyboardSensor  the keyboard sensor
+     * @param animationRunner the animation runner
+     * @param score           the score
+     * @param ballsRemained   the balls remained
+     * @param blocksRemained  the blocks remained
+     */
+    public GameLevel(LevelInformation levelInfo, KeyboardSensor keyboardSensor, AnimationRunner animationRunner,
+                     Counter score, Counter ballsRemained, Counter blocksRemained) {
         this.levelInfo = levelInfo;
+        this.keyboard = keyboardSensor;
+        this.animationRunner = animationRunner;
+        this.score = score;
+        this.ballsRemained = ballsRemained;
+        this.blocksRemained = blocksRemained;
     }
 
     /**
-     * Initializes the game by creating and adding the game blocks, balls, and a paddle.
+     * Initializes each level by creating and adding the game blocks, balls, a paddle, etc.
      */
     public void initialize() {
-        //levelInfo.levelName();
 
         // add background
         levelInfo.getBackground().addToGame(this);
@@ -86,7 +99,8 @@ public class GameLevel implements Animation {
         this.paddle.addToGame(this);
 
         // add balls to the game
-        Point ballPoint = new Point((double) WIDTH / 2, paddle.getCollisionRectangle().getY() - GameLevel.OFFSET * 2);
+        Point ballPoint = new Point((double) GameLevel.WIDTH / 2,
+                paddle.getCollisionRectangle().getY() - GameLevel.OFFSET * 2);
         ballsRemained.increase(levelInfo.numberOfBalls());
 
         for (int i = 0; i < levelInfo.numberOfBalls(); i++) {
@@ -120,13 +134,8 @@ public class GameLevel implements Animation {
         ScoreIndicator scoreIndicator = new ScoreIndicator(this.score);
         scoreIndicator.addToGame(this);
 
-        LivesIndicator livesIndicator = new LivesIndicator(1);
-        livesIndicator.addToGame(this);
-
         NameIndicator nameIndicator = new NameIndicator(this.levelInfo.levelName());
         nameIndicator.addToGame(this);
-
-
     }
 
 
@@ -153,18 +162,9 @@ public class GameLevel implements Animation {
      * Start running the game.
      */
     public void run() {
-        //this.runner.run(new CountdownAnimation(2, 3, this.sprites));    // countdown before turn starts. //TODO
+        this.animationRunner.run(new CountdownAnimation(2, 3, this.sprites));    // countdown before turn starts. //TODO
         this.running = true;
-        this.runner.run(this);
-    }
-
-    /**
-     * Gets the gui of the game.
-     *
-     * @return the gui
-     */
-    public GUI getGui() {
-        return gui;
+        this.animationRunner.run(this);
     }
 
     /**
@@ -210,8 +210,8 @@ public class GameLevel implements Animation {
         sprites.notifyAllTimePassed();
 
         if (this.keyboard.isPressed("p")) {
-            this.runner.run(new PauseScreen(this.keyboard));
-            this.runner.run(new CountdownAnimation(2, 3, this.sprites));    // countdown before turn starts.
+            this.animationRunner.run(new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, new PauseScreen()));
+            this.animationRunner.run(new CountdownAnimation(2, 3, this.sprites));    // countdown before turn starts.
         }
 
         if (this.ballsRemained.getValue() == 0) {

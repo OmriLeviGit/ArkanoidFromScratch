@@ -3,23 +3,25 @@
 
 package game.levels;
 
-import game.environment.Sprite;
+import game.gameFunction.environment.Sprite;
 import game.gameFunction.GameLevel;
 import game.shapes.circles.Point;
 import game.shapes.circles.Velocity;
 import game.shapes.squares.Block;
-import game.shapes.squares.Rectangle;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Rainbow implements LevelInformation {
+/**
+ * Holds all the information of the Prism level.
+ */
+public class Prism implements LevelInformation {
 
     @Override
     public int numberOfBalls() {
-        return 100;
+        return 5;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class Rainbow implements LevelInformation {
         List<Velocity> velocities = new ArrayList<>();
 
         Random rand = new Random();
-        int angleRange = 30;                        // the angle will be randomized between -angleRange and angleRange
+        int angleRange = 60;                        // the angle will be randomized between -angleRange and angleRange
 
         for (int i = 0; i < numberOfBalls(); i++) {
             int angle = rand.nextInt(angleRange * 2) - angleRange;          // get an angle between -30 and 30
@@ -39,7 +41,7 @@ public class Rainbow implements LevelInformation {
 
     @Override
     public int paddleSpeed() {
-        return 7;
+        return 10;
     }
 
     @Override
@@ -49,14 +51,12 @@ public class Rainbow implements LevelInformation {
 
     @Override
     public String levelName() {
-        return "Rainbow";
+        return "Level: Prism";
     }
 
     @Override
     public Sprite getBackground() {
-        Rectangle background = new Rectangle(GameLevel.WIDTH, GameLevel.HEIGHT);
-        background.setColor(Color.WHITE);
-        return background;
+        return new game.levels.backgrounds.Prism();
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Rainbow implements LevelInformation {
         final double legalHeight = GameLevel.WIDTH - GameLevel.BORDER_THICKNESS * 2;      // game height without borders
 
         int numOfBlocks = 12;                                   // amount of blocks in the longest row
-        int numOfRows = 5;                                      // amount of rows required for the assignment
+        int numOfRows = color.length;                           // amount of rows required for the assignment
         int heightFromCeiling = 3;                              // used to increase distance from the top border
 
         // width and height are calculated with these ratios in mind

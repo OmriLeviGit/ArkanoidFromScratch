@@ -5,8 +5,8 @@ package game.shapes.squares;
 
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
-import game.environment.Collidable;
-import game.environment.Sprite;
+import game.gameFunction.environment.Collidable;
+import game.gameFunction.environment.Sprite;
 import game.gameFunction.GameLevel;
 import game.shapes.circles.Ball;
 import game.shapes.circles.Point;
@@ -30,10 +30,12 @@ public class Paddle implements Collidable, Sprite {
     /**
      * Constructor for the Paddle class.
      *
-     * @param keyboard  the keyboard sensor used to move the paddle
+     * @param paddleWidth the paddle width
+     * @param speed       the speed of the paddle
+     * @param keyboard    the keyboard sensor used to move the paddle
      */
     public Paddle(int paddleWidth, int speed, KeyboardSensor keyboard) {
-        int paddleHeight = 20;                      // the height of the paddle
+        int paddleHeight = 20;      // the height of the paddle
 
         // center the paddle to match the border
         double xPaddle = (double) (GameLevel.WIDTH - paddleWidth) / 2;
@@ -44,7 +46,6 @@ public class Paddle implements Collidable, Sprite {
         this.rectangle.setColor(Color.yellow);
         this.speed = speed;
         this.keyboard = keyboard;
-
     }
 
     /**
@@ -108,7 +109,8 @@ public class Paddle implements Collidable, Sprite {
         double xAfterMoving = upperLeftX + speed;
 
         // offset the right border using the width of the paddle
-        double rightBorder = GameLevel.WIDTH - (GameLevel.BORDER_THICKNESS + this.rectangle.getWidth() + GameLevel.OFFSET);
+        double rightBorder =
+                GameLevel.WIDTH - (GameLevel.BORDER_THICKNESS + this.rectangle.getWidth() + GameLevel.OFFSET);
 
         upperLeftX = Math.min(xAfterMoving, rightBorder);   // makes sure the paddle does not exit the boundaries
 

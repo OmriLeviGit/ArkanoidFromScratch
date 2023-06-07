@@ -4,20 +4,25 @@
 package game.animation;
 
 import biuoop.DrawSurface;
+import game.gameFunction.indicatorsAndCounters.Counter;
 import game.gameFunction.GameLevel;
 
 import java.awt.Color;
 
 /**
- * The type Pause screen.
+ * The type Winning screen.
  */
-public class PauseScreen implements Animation {
+public class WinningScreen implements Animation {
+    private final int finalScore;
     private final boolean stop;
 
     /**
-     * Instantiates a new Pause screen.
+     * Instantiates a new Winning screen.
+     *
+     * @param score the score
      */
-    public PauseScreen() {
+    public WinningScreen(Counter score) {
+        this.finalScore = score.getValue();
         this.stop = false;
     }
 
@@ -25,8 +30,7 @@ public class PauseScreen implements Animation {
     public void doOneFrame(DrawSurface d) {
 
         d.setColor(Color.BLACK);
-
-        String text = "paused -- press space to continue";
+        String text = "You Win! Your score is " + this.finalScore;
         int textSize = 40;
         int xText = (d.getWidth() - textSize * text.length() / 2) / 2 + GameLevel.BORDER_THICKNESS;
         int yText = (d.getHeight() + textSize) / 2;

@@ -4,7 +4,7 @@
 package game.shapes.squares;
 
 import biuoop.DrawSurface;
-import game.environment.Sprite;
+import game.gameFunction.environment.Sprite;
 import game.shapes.circles.Point;
 import game.shapes.lines.Line;
 import java.awt.Color;

@@ -1,11 +1,10 @@
 // 206573289 Omri Levi
 
 
-package game.indicators;
+package game.gameFunction.indicatorsAndCounters;
 
 import biuoop.DrawSurface;
-import game.environment.Sprite;
-import game.gameFunction.Counter;
+import game.gameFunction.environment.Sprite;
 import game.gameFunction.GameLevel;
 
 import java.awt.Color;
@@ -26,14 +25,14 @@ public class ScoreIndicator implements Sprite {
     }
 
     @Override
-    public void drawOn(DrawSurface surface) {
-        surface.setColor(Color.BLACK);
+    public void drawOn(DrawSurface d) {
+        d.setColor(Color.BLACK);
 
         String text = "Score: " + score.getValue();
         int textSize = 15;
-        int xText = (GameLevel.WIDTH - textSize * text.length() / 2) / 2;
+        int xText = (d.getWidth() - textSize * text.length() / 2) / 2;
         int yText = (GameLevel.BORDER_THICKNESS + textSize) / 2;
 
-        surface.drawText(xText, yText, text, textSize);
+        d.drawText(xText, yText, text, textSize);
     }
 }

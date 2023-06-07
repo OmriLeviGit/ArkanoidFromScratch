@@ -3,8 +3,9 @@
 
 package game.levels;
 
-import game.environment.Sprite;
+import game.gameFunction.environment.Sprite;
 import game.gameFunction.GameLevel;
+import game.levels.backgrounds.BullseyeBackground;
 import game.shapes.circles.Velocity;
 import game.shapes.squares.Block;
 import game.shapes.squares.Rectangle;
@@ -13,7 +14,10 @@ import java.awt.Color;
 import java.util.Collections;
 import java.util.List;
 
-public class DirectHit implements LevelInformation {
+/**
+ * Holds all the information of the Bullseye level.
+ */
+public class Bullseye implements LevelInformation {
     @Override
     public int numberOfBalls() {
         return 1;
@@ -21,7 +25,7 @@ public class DirectHit implements LevelInformation {
 
     @Override
     public List<Velocity> initialBallVelocities() {
-        return Collections.singletonList(new Velocity(0, 7));
+        return Collections.singletonList(new Velocity(0, 5));
     }
 
     @Override
@@ -36,21 +40,20 @@ public class DirectHit implements LevelInformation {
 
     @Override
     public String levelName() {
-        return "Bull's-Eye";
+        return "Level: Bull's-Eye";
     }
 
     @Override
     public Sprite getBackground() {
-        Rectangle background = new Rectangle(GameLevel.WIDTH, GameLevel.HEIGHT);
-        background.setColor(new Color(50, 100, 0));
-        return background;
+        return new BullseyeBackground();
     }
 
     @Override
     public List<Block> blocks() {
-        int size = 10;
-        Block block = new Block(new Rectangle((double) (GameLevel.WIDTH - size) / 2, 50, size, size));
-        block.getCollisionRectangle().setColor(Color.RED);
-        return Collections.singletonList(block);
+        int size = 15;
+        Rectangle target = new Rectangle((double) (GameLevel.WIDTH - size) / 2,
+                (double) (GameLevel.HEIGHT - size) / 3 - 3, size, size);
+        target.setColor(Color.RED);
+        return Collections.singletonList(new Block(target));
     }
 }

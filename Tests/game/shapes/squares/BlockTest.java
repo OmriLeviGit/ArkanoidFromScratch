@@ -2,7 +2,7 @@ package game.shapes.squares;
 
 import biuoop.DrawSurface;
 import biuoop.GUI;
-import game.environment.GameEnvironment;
+import game.gameFunction.environment.GameEnvironment;
 import game.gameFunction.GameLevel;
 import game.gameFunction.Initializer;
 import game.miscellaneous.DoubleCompare;

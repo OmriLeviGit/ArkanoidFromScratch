@@ -7,10 +7,19 @@ import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.Sleeper;
 
+/**
+ * The type Animation runner.
+ */
 public class AnimationRunner {
     private final GUI gui;
     private final int framesPerSecond;
 
+    /**
+     * Instantiates a new Animation runner.
+     *
+     * @param gui             the gui
+     * @param framesPerSecond the frames per second
+     */
     public AnimationRunner(GUI gui, int framesPerSecond) {
         this.gui = gui;
         this.framesPerSecond = framesPerSecond;
@@ -18,6 +27,8 @@ public class AnimationRunner {
 
     /**
      * Runs the animation loop, which updates the sprites and draws them on the GUI.
+     *
+     * @param animation the animation
      */
     public void run(Animation animation) {
         int millisecondsPerFrame = 1000 / framesPerSecond;

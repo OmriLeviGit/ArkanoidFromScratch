@@ -5,13 +5,13 @@ package game.animation;
 
 import biuoop.DrawSurface;
 import biuoop.Sleeper;
-import game.environment.SpriteCollection;
+import game.gameFunction.environment.SpriteCollection;
 import game.gameFunction.GameLevel;
 
 import java.awt.Color;
 
 /**
- * The CountdownAnimation will show a countdown to 1
+ * The CountdownAnimation will show a countdown to 1.
  */
 public class CountdownAnimation implements Animation {
     private final SpriteCollection gameScreen;
@@ -27,7 +27,7 @@ public class CountdownAnimation implements Animation {
      * @param gameScreen   the game screen that will continue when the counting ends
      */
     public CountdownAnimation(double numOfSeconds, int countFrom, SpriteCollection gameScreen) {
-        this.countFrom = countFrom + 1;     // i believe there is a bug drawing the surface, the number always 1 step backwards // TODO check it
+        this.countFrom = countFrom + 1;
         this.gameScreen = gameScreen;
         this.sleepDuration = (long) ((numOfSeconds / countFrom) * 1000);
     }
@@ -39,8 +39,8 @@ public class CountdownAnimation implements Animation {
 
         String text = "Game starts in: " + (this.countFrom - 1);
         int textSize = 30;
-        int xText = (GameLevel.WIDTH - textSize * text.length() / 2) / 2 + GameLevel.BORDER_THICKNESS;
-        int yText = (GameLevel.HEIGHT + textSize) / 2;
+        int xText = (d.getWidth() - textSize * text.length() / 2) / 2 + GameLevel.BORDER_THICKNESS;
+        int yText = (d.getHeight() + textSize) / 2;
 
         d.drawText(xText, yText, text, textSize);
 

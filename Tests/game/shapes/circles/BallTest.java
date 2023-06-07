@@ -2,7 +2,7 @@ package game.shapes.circles;
 
 import biuoop.DrawSurface;
 import biuoop.GUI;
-import game.environment.GameEnvironment;
+import game.gameFunction.environment.GameEnvironment;
 import game.shapes.squares.Block;
 import game.shapes.squares.Rectangle;
 import org.junit.jupiter.api.Test;

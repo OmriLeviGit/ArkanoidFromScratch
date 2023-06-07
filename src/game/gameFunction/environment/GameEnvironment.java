@@ -1,7 +1,7 @@
 // 206573289 Omri Levi
 
 
-package game.environment;
+package game.gameFunction.environment;
 
 import game.miscellaneous.DoubleCompare;
 import game.shapes.circles.Point;

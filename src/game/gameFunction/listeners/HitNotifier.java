@@ -1,7 +1,7 @@
 // 206573289 Omri Levi
 
 
-package game.listener;
+package game.gameFunction.listeners;
 
 /**
  * The interface Hit notifier.

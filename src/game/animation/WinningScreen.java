@@ -13,8 +13,7 @@ import java.awt.Color;
  * The type Winning screen.
  */
 public class WinningScreen implements Animation {
-    private final int finalScore;
-    private final boolean stop;
+    private final Counter score;
 
     /**
      * Instantiates a new Winning screen.
@@ -22,24 +21,22 @@ public class WinningScreen implements Animation {
      * @param score the score
      */
     public WinningScreen(Counter score) {
-        this.finalScore = score.getValue();
-        this.stop = false;
+        this.score = score;
     }
 
     @Override
     public void doOneFrame(DrawSurface d) {
-
-        d.setColor(Color.BLACK);
-        String text = "You Win! Your score is " + this.finalScore;
         int textSize = 40;
+        String text = "You Win! Your score is " + this.score.getValue();
         int xText = (d.getWidth() - textSize * text.length() / 2) / 2 + GameLevel.BORDER_THICKNESS;
         int yText = (d.getHeight() + textSize) / 2;
 
+        d.setColor(Color.BLACK);
         d.drawText(xText, yText, text, textSize);
     }
 
     @Override
     public boolean shouldStop() {
-        return this.stop;
+        return false;
     }
 }

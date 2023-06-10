@@ -4,6 +4,7 @@
 package game.gameFunction;
 
 import biuoop.KeyboardSensor;
+import game.animation.Animation;
 import game.animation.AnimationRunner;
 import game.animation.KeyPressStoppableAnimation;
 import game.animation.LosingScreen;
@@ -48,14 +49,15 @@ public class GameFlow {
             level.run();
 
             if (ballsRemained.getValue() == 0) {
-                this.animationRunner.run(
-                        new KeyPressStoppableAnimation(
-                                keyboard, keyboard.SPACE_KEY, new LosingScreen(score)));    // run losing animation
+                Animation losingScreen = new LosingScreen(score);
+                Animation keyPress = new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, losingScreen);
+                this.animationRunner.run(keyPress);    // run losing animation
                 return;
             }
         }
 
-        this.animationRunner.run(new KeyPressStoppableAnimation(
-                keyboard, keyboard.SPACE_KEY, new WinningScreen(score)));   // run winning animation
+        Animation losingScreen = new WinningScreen(score);
+        Animation keyPress = new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, losingScreen);
+        this.animationRunner.run(keyPress);    // run winning animation
     }
 }

@@ -6,7 +6,10 @@ package game.animation;
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
 
-public class KeyPressStoppableAnimation implements Animation { // TODO decorator
+/**
+ * The type Key press stoppable animation is used to wrap animations that are stopped by a key press.
+ */
+public class KeyPressStoppableAnimation implements Animation {
     private final KeyboardSensor keyboard;
     private final String key;
     private final Animation animation;
@@ -27,10 +30,10 @@ public class KeyPressStoppableAnimation implements Animation { // TODO decorator
 
     @Override
     public void doOneFrame(DrawSurface d) {
-        animation.doOneFrame(d);
+        this.animation.doOneFrame(d);
 
         if (this.keyboard.isPressed(this.key)) {
-            this.stop = true;
+            this.stop = !this.stop;
         }
     }
 

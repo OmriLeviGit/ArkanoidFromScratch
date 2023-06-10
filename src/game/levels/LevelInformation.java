@@ -69,5 +69,5 @@ public interface LevelInformation {
      */
     default int numberOfBlocksToRemove() {
         return blocks().size();
-    };
+    }
 }

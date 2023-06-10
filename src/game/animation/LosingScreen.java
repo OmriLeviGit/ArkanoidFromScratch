@@ -13,8 +13,7 @@ import java.awt.Color;
  * The type Losing screen.
  */
 public class LosingScreen implements Animation {
-    private final int finalScore;
-    private final boolean stop;
+    private final Counter score;
 
     /**
      * Instantiates a new Losing screen.
@@ -22,23 +21,23 @@ public class LosingScreen implements Animation {
      * @param score the score
      */
     public LosingScreen(Counter score) {
-        this.finalScore = score.getValue();
-        this.stop = false;
+        this.score = score;
     }
 
     @Override
     public void doOneFrame(DrawSurface d) {
-        d.setColor(Color.BLACK);
-        String text = "Game Over. Your score is " + this.finalScore;
+        String text = "Game Over. Your score is " + this.score.getValue();
         int textSize = 40;
         int xText = (d.getWidth() - textSize * text.length() / 2) / 2 + GameLevel.BORDER_THICKNESS;
         int yText = (d.getHeight() + textSize) / 2;
 
+        d.setColor(Color.BLACK);
         d.drawText(xText, yText, text, textSize);
     }
 
     @Override
     public boolean shouldStop() {
-        return this.stop;
+        return false;
     }
 }
+

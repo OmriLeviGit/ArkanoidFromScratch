@@ -22,29 +22,28 @@ public class CountdownAnimation implements Animation {
     /**
      * Instantiates a new Countdown animation.
      *
-     * @param numOfSeconds the num of seconds the countdown will actually take
+     * @param totalDuration the num of seconds the countdown will actually take
      * @param countFrom    the count from
      * @param gameScreen   the game screen that will continue when the counting ends
      */
-    public CountdownAnimation(double numOfSeconds, int countFrom, SpriteCollection gameScreen) {
+    public CountdownAnimation(double totalDuration, int countFrom, SpriteCollection gameScreen) {
         this.countFrom = countFrom + 1;
         this.gameScreen = gameScreen;
-        this.sleepDuration = (long) ((numOfSeconds / countFrom) * 1000);
+        this.sleepDuration = (long) ((totalDuration / countFrom) * 1000);
     }
 
     @Override
     public void doOneFrame(DrawSurface d) {
         this.gameScreen.drawAllOn(d);
-        d.setColor(Color.WHITE);
+        this.countFrom--;
 
-        String text = "Game starts in: " + (this.countFrom - 1);
+        String text = "Game starts in: " + (this.countFrom);
         int textSize = 30;
         int xText = (d.getWidth() - textSize * text.length() / 2) / 2 + GameLevel.BORDER_THICKNESS;
         int yText = (d.getHeight() + textSize) / 2;
 
+        d.setColor(Color.WHITE);
         d.drawText(xText, yText, text, textSize);
-
-        this.countFrom--;
 
         if (!firstIteration) {
             new Sleeper().sleepFor(sleepDuration);

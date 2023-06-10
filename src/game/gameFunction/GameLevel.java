@@ -61,7 +61,7 @@ public class GameLevel implements Animation {
     private final Counter blocksRemained;
     private final LevelInformation levelInfo;
     private final KeyboardSensor keyboard;
-    private final AnimationRunner animationRunner;
+    private final AnimationRunner runner;
     private Paddle paddle;
     private boolean running;
 
@@ -71,16 +71,16 @@ public class GameLevel implements Animation {
      *
      * @param levelInfo       the level info
      * @param keyboardSensor  the keyboard sensor
-     * @param animationRunner the animation runner
+     * @param runner the animation runner
      * @param score           the score
      * @param ballsRemained   the balls remained
      * @param blocksRemained  the blocks remained
      */
-    public GameLevel(LevelInformation levelInfo, KeyboardSensor keyboardSensor, AnimationRunner animationRunner,
+    public GameLevel(LevelInformation levelInfo, KeyboardSensor keyboardSensor, AnimationRunner runner,
                      Counter score, Counter ballsRemained, Counter blocksRemained) {
         this.levelInfo = levelInfo;
         this.keyboard = keyboardSensor;
-        this.animationRunner = animationRunner;
+        this.runner = runner;
         this.score = score;
         this.ballsRemained = ballsRemained;
         this.blocksRemained = blocksRemained;
@@ -162,9 +162,9 @@ public class GameLevel implements Animation {
      * Start running the game.
      */
     public void run() {
-        this.animationRunner.run(new CountdownAnimation(2, 3, this.sprites));    // countdown before turn starts. //TODO
+        this.runner.run(new CountdownAnimation(2, 3, this.sprites));
         this.running = true;
-        this.animationRunner.run(this);
+        this.runner.run(this);
     }
 
     /**
@@ -210,8 +210,8 @@ public class GameLevel implements Animation {
         sprites.notifyAllTimePassed();
 
         if (this.keyboard.isPressed("p")) {
-            this.animationRunner.run(new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, new PauseScreen()));
-            this.animationRunner.run(new CountdownAnimation(2, 3, this.sprites));    // countdown before turn starts.
+            this.runner.run(new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, new PauseScreen()));
+            this.runner.run(new CountdownAnimation(2, 3, this.sprites));    // countdown before turn starts.
         }
 
         if (this.ballsRemained.getValue() == 0) {

@@ -14,6 +14,7 @@ public class KeyPressStoppableAnimation implements Animation {
     private final String key;
     private final Animation animation;
     private boolean stop = false;
+    private boolean isAlreadyPressed = true;
 
     /**
      * Instantiates a new stoppable animation.
@@ -32,8 +33,12 @@ public class KeyPressStoppableAnimation implements Animation {
     public void doOneFrame(DrawSurface d) {
         this.animation.doOneFrame(d);
 
-        if (this.keyboard.isPressed(this.key)) {
-            this.stop = !this.stop;
+        if (!this.keyboard.isPressed(this.key)) {
+            this.isAlreadyPressed = false;
+        }
+
+        if (this.keyboard.isPressed(this.key) && ! isAlreadyPressed) {
+            this.stop = ! this.stop;
         }
     }
 

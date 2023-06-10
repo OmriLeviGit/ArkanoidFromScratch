@@ -4,11 +4,7 @@
 package game.gameFunction;
 
 import biuoop.KeyboardSensor;
-import game.animation.Animation;
-import game.animation.AnimationRunner;
-import game.animation.KeyPressStoppableAnimation;
-import game.animation.LosingScreen;
-import game.animation.WinningScreen;
+import game.animation.*;
 import game.gameFunction.indicatorsAndCounters.Counter;
 import game.levels.LevelInformation;
 
@@ -52,12 +48,23 @@ public class GameFlow {
                 Animation losingScreen = new LosingScreen(score);
                 Animation keyPress = new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, losingScreen);
                 this.animationRunner.run(keyPress);    // run losing animation
+
                 return;
             }
         }
-
-        Animation losingScreen = new WinningScreen(score);
-        Animation keyPress = new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, losingScreen);
+/*
+        Animation winningScreen = new WinningScreen(score);
+        Animation keyPress = new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, winningScreen);
         this.animationRunner.run(keyPress);    // run winning animation
+
+ */
+
+        Animation winningScreen = new WinningScreen(score);
+        Animation keyPress = new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, winningScreen);
+        Animation pause = new PauseScreen();
+        Animation keyPress2 = new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, pause);
+
+        this.animationRunner.run(keyPress);    // run losing animation
+        this.animationRunner.run(keyPress2);    // run losing animation
     }
 }

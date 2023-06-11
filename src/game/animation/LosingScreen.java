@@ -26,12 +26,15 @@ public class LosingScreen implements Animation {
 
     @Override
     public void doOneFrame(DrawSurface d) {
-        String text = "Game Over. Your score is " + this.score.getValue();
+        d.setColor(Color.BLACK);
+        d.fillRectangle(0, 0, d.getWidth(), d.getHeight());
+
+        String text = "Game Over! Your score is " + this.score.getValue();
         int textSize = 40;
         int xText = (d.getWidth() - textSize * text.length() / 2) / 2 + GameLevel.BORDER_THICKNESS;
         int yText = (d.getHeight() + textSize) / 2;
 
-        d.setColor(Color.BLACK);
+        d.setColor(Color.RED);
         d.drawText(xText, yText, text, textSize);
     }
 

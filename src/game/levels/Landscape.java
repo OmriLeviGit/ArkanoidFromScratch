@@ -73,11 +73,8 @@ public class Landscape implements LevelInformation {
 
         // create blocks and initialize
         for (int i = 0; i < maxBlocksInRow; i++) {
-            if (i % 2 == 0) {
-                continue;
-            }
-            double currentPointX = GameLevel.BORDER_THICKNESS + blockWidth * i - 25;
-            double currentPointY = GameLevel.BORDER_THICKNESS + blockHeight + 75 + 20 * (i % 3);
+            double currentPointX = GameLevel.BORDER_THICKNESS + blockWidth * i;
+            double currentPointY = GameLevel.BORDER_THICKNESS + blockHeight + 150;
             Point upperLeft = new Point(currentPointX, currentPointY);
             Block block = new Block(upperLeft, blockWidth, blockHeight);
 

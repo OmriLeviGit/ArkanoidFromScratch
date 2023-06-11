@@ -26,12 +26,15 @@ public class WinningScreen implements Animation {
 
     @Override
     public void doOneFrame(DrawSurface d) {
+        d.setColor(Color.BLACK);
+        d.fillRectangle(0, 0, d.getWidth(), d.getHeight());
+
         int textSize = 40;
         String text = "You Win! Your score is " + this.score.getValue();
         int xText = (d.getWidth() - textSize * text.length() / 2) / 2 + GameLevel.BORDER_THICKNESS;
         int yText = (d.getHeight() + textSize) / 2;
 
-        d.setColor(Color.BLACK);
+        d.setColor(Color.GREEN);
         d.drawText(xText, yText, text, textSize);
     }
 

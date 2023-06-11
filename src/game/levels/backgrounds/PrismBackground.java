@@ -12,7 +12,7 @@ import java.awt.Color;
 /**
  * The background of the level Prism of type Sprite.
  */
-public class Prism implements Sprite {
+public class PrismBackground implements Sprite {
 
     @Override
     public void drawOn(DrawSurface d) {

@@ -5,6 +5,7 @@ package game.levels;
 
 import game.gameFunction.environment.Sprite;
 import game.gameFunction.GameLevel;
+import game.levels.backgrounds.PrismBackground;
 import game.shapes.circles.Point;
 import game.shapes.circles.Velocity;
 import game.shapes.squares.Block;
@@ -56,7 +57,7 @@ public class Prism implements LevelInformation {
 
     @Override
     public Sprite getBackground() {
-        return new game.levels.backgrounds.Prism();
+        return new PrismBackground();
     }
 
     @Override

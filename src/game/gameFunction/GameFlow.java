@@ -4,7 +4,12 @@
 package game.gameFunction;
 
 import biuoop.KeyboardSensor;
-import game.animation.*;
+import game.animation.Animation;
+import game.animation.AnimationRunner;
+import game.animation.KeyPressStoppableAnimation;
+import game.animation.LosingScreen;
+import game.animation.PauseScreen;
+import game.animation.WinningScreen;
 import game.gameFunction.indicatorsAndCounters.Counter;
 import game.levels.LevelInformation;
 

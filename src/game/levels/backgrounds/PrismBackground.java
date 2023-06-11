@@ -37,7 +37,7 @@ public class Prism implements Sprite {
 
         // light
         d.setColor(Color.GRAY);
-        d.drawLine(GameLevel.BORDER_THICKNESS * 2, height - (int) (0.2 * length),
+        d.drawLine(GameLevel.BORDER_THICKNESS * 2, height - (int) (0.1 * length),
                 leftPoint + (int) (0.5 * length), height - (int) (0.5 * length));
 
         Color[] color = {Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE, Color.MAGENTA};

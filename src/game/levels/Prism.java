@@ -3,8 +3,8 @@
 
 package game.levels;
 
-import game.gameFunction.environment.Sprite;
-import game.gameFunction.GameLevel;
+import game.levels.gameFunction.environment.Sprite;
+import game.levels.gameFunction.GameLevel;
 import game.levels.backgrounds.PrismBackground;
 import game.shapes.circles.Point;
 import game.shapes.circles.Velocity;

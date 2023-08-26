@@ -1,6 +1,6 @@
 // 206573289 Omri Levi
 
-package game.gameFunction.environment;
+package game.levels.gameFunction.environment;
 
 import game.shapes.circles.Point;
 

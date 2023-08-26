@@ -1,7 +1,7 @@
 // 206573289 Omri Levi
 
 
-package game.gameFunction.indicatorsAndCounters;
+package game.levels.gameFunction.indicatorsAndCounters;
 
 /**
  * The type Counter.

@@ -1,11 +1,11 @@
 // 206573289 Omri Levi
 
 
-package game.gameFunction.indicatorsAndCounters;
+package game.levels.gameFunction.indicatorsAndCounters;
 
 import biuoop.DrawSurface;
-import game.gameFunction.environment.Sprite;
-import game.gameFunction.GameLevel;
+import game.levels.gameFunction.environment.Sprite;
+import game.levels.gameFunction.GameLevel;
 
 import java.awt.Color;
 

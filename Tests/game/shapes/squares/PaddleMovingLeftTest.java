@@ -4,7 +4,7 @@
 package game.shapes.squares;
 
 import biuoop.KeyboardSensor;
-import game.gameFunction.GameLevel;
+import game.levels.gameFunction.GameLevel;
 import game.gameFunction.Initializer;
 import game.miscellaneous.DoubleCompare;
 import game.shapes.circles.Ball;

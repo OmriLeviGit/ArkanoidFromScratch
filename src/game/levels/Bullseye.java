@@ -3,8 +3,8 @@
 
 package game.levels;
 
-import game.gameFunction.environment.Sprite;
-import game.gameFunction.GameLevel;
+import game.levels.gameFunction.environment.Sprite;
+import game.levels.gameFunction.GameLevel;
 import game.levels.backgrounds.BullseyeBackground;
 import game.shapes.circles.Velocity;
 import game.shapes.squares.Block;
@@ -18,6 +18,7 @@ import java.util.List;
  * Holds all the information of the Bullseye level.
  */
 public class Bullseye implements LevelInformation {
+
     @Override
     public int numberOfBalls() {
         return 1;

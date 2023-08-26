@@ -1,12 +1,12 @@
 // 206573289 Omri Levi
 
 
-package game.animation;
+package game.animationAndScreens;
 
 import biuoop.DrawSurface;
 import biuoop.Sleeper;
-import game.gameFunction.environment.SpriteCollection;
-import game.gameFunction.GameLevel;
+import game.levels.gameFunction.environment.SpriteCollection;
+import game.levels.gameFunction.GameLevel;
 
 import java.awt.Color;
 

@@ -1,10 +1,10 @@
 // 206573289 Omri Levi
 
 
-package game.gameFunction.environment;
+package game.levels.gameFunction.environment;
 
 import biuoop.DrawSurface;
-import game.gameFunction.GameLevel;
+import game.levels.gameFunction.GameLevel;
 
 /**
  * The Sprite interface represents an object that can be drawn on a surface and notified of time passing.

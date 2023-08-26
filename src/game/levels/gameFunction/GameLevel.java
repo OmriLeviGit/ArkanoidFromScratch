@@ -1,26 +1,27 @@
 // 206573289 Omri Levi
 
 
-package game.gameFunction;
+package game.levels.gameFunction;
 
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;
-import game.animation.Animation;
-import game.animation.AnimationRunner;
-import game.animation.CountdownAnimation;
-import game.animation.KeyPressStoppableAnimation;
-import game.animation.PauseScreen;
-import game.gameFunction.environment.Collidable;
-import game.gameFunction.environment.GameEnvironment;
-import game.gameFunction.environment.Sprite;
-import game.gameFunction.environment.SpriteCollection;
-import game.gameFunction.indicatorsAndCounters.Counter;
-import game.gameFunction.indicatorsAndCounters.NameIndicator;
-import game.gameFunction.indicatorsAndCounters.ScoreIndicator;
+import game.animationAndScreens.Animation;
+import game.animationAndScreens.AnimationRunner;
+import game.animationAndScreens.CountdownAnimation;
+import game.animationAndScreens.KeyPressStoppableAnimation;
+import game.animationAndScreens.PauseScreen;
+import game.levels.gameFunction.environment.Collidable;
+import game.levels.gameFunction.environment.GameEnvironment;
+import game.levels.gameFunction.environment.Sprite;
+import game.levels.gameFunction.environment.SpriteCollection;
+import game.levels.gameFunction.indicatorsAndCounters.Counter;
+import game.levels.gameFunction.indicatorsAndCounters.NameIndicator;
+import game.levels.gameFunction.indicatorsAndCounters.PauseText;
+import game.levels.gameFunction.indicatorsAndCounters.ScoreIndicator;
 import game.levels.LevelInformation;
-import game.gameFunction.listeners.BallRemover;
-import game.gameFunction.listeners.BlockRemover;
-import game.gameFunction.listeners.ScoreTrackingListener;
+import game.levels.gameFunction.listeners.BallRemover;
+import game.levels.gameFunction.listeners.BlockRemover;
+import game.levels.gameFunction.listeners.ScoreTrackingListener;
 import game.shapes.circles.Ball;
 import game.shapes.circles.Point;
 import game.shapes.squares.Block;
@@ -130,12 +131,15 @@ public class GameLevel implements Animation {
         deathRegion.addHitListener(new BallRemover(this, this.ballsRemained));
         deathRegion.addToGame(this);
 
-        // add score indicator
+        // add indicators
         ScoreIndicator scoreIndicator = new ScoreIndicator(this.score);
         scoreIndicator.addToGame(this);
 
         NameIndicator nameIndicator = new NameIndicator(this.levelInfo.levelName());
         nameIndicator.addToGame(this);
+
+        PauseText pauseText = new PauseText();
+        pauseText.addToGame(this);
     }
 
 

@@ -1,5 +1,7 @@
 package game.gameFunction;
 
+import game.levels.gameFunction.GameLevel;
+
 class GameTest {
     GameLevel game = new GameLevel();
 

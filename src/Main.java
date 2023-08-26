@@ -2,9 +2,9 @@
 
 
 import biuoop.GUI;
-import game.animation.AnimationRunner;
-import game.gameFunction.GameFlow;
-import game.gameFunction.GameLevel;
+import game.animationAndScreens.AnimationRunner;
+import game.levels.gameFunction.GameFlow;
+import game.levels.gameFunction.GameLevel;
 import game.levels.Bullseye;
 import game.levels.LevelInformation;
 import game.levels.Prism;
@@ -18,20 +18,19 @@ import java.util.regex.Matcher;
 
 
 /**
- * This class is the main entry point for the game
+ * This class is the main entry point for the game.
  * <p>
  * It creates an instance of the Game class, initializes it and starts its execution.
  * </p>
  */
-public class Ass6Game {
+public class Main {
 
     /**
      * The main method creates an instance of the game, initializes it and starts its execution.
      *
-     * @param args Command line arguments (not used).
+     * @param args specific levels can be accessed via args. if no args were specified, uses the default order.
      */
     public static void main(String[] args) {
-        GUI gui = new GUI("Game", GameLevel.WIDTH, GameLevel.HEIGHT);
         final int numOfFrames = 60;
 
         // list of all available levels
@@ -55,11 +54,16 @@ public class Ass6Game {
                 }
             }
 
+            if (newOrder.isEmpty()) {
+                System.out.println("no valid levels");
+                return;
+            }
             System.out.println("the game will play with the levels: " + newOrder);
 
             listOfLevels = newOrderOfLevels;        // replace the default order with a new one from the user
         }
 
+        GUI gui = new GUI("Game", GameLevel.WIDTH, GameLevel.HEIGHT);
         GameFlow gameFlow = new GameFlow(new AnimationRunner(gui, numOfFrames), gui.getKeyboardSensor());
         gameFlow.runLevels(listOfLevels);
         gui.close();

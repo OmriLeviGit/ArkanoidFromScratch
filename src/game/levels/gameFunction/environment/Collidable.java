@@ -1,9 +1,9 @@
 // 206573289 Omri Levi
 
 
-package game.gameFunction.environment;
+package game.levels.gameFunction.environment;
 
-import game.gameFunction.GameLevel;
+import game.levels.gameFunction.GameLevel;
 import game.shapes.circles.Ball;
 import game.shapes.circles.Point;
 import game.shapes.circles.Velocity;

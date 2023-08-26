@@ -1,7 +1,7 @@
 // 206573289 Omri Levi
 
 
-package game.animation;
+package game.animationAndScreens;
 
 import biuoop.DrawSurface;
 import biuoop.KeyboardSensor;

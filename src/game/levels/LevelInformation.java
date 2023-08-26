@@ -3,7 +3,7 @@
 
 package game.levels;
 
-import game.gameFunction.environment.Sprite;
+import game.levels.gameFunction.environment.Sprite;
 import game.shapes.circles.Velocity;
 import game.shapes.squares.Block;
 

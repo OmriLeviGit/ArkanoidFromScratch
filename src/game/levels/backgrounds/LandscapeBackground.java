@@ -4,7 +4,7 @@
 package game.levels.backgrounds;
 
 import biuoop.DrawSurface;
-import game.gameFunction.environment.Sprite;
+import game.levels.gameFunction.environment.Sprite;
 
 import java.awt.Color;
 

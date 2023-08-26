@@ -4,11 +4,11 @@
 package game.shapes.squares;
 
 import biuoop.DrawSurface;
-import game.gameFunction.GameLevel;
-import game.gameFunction.environment.Collidable;
-import game.gameFunction.environment.Sprite;
-import game.gameFunction.listeners.HitListener;
-import game.gameFunction.listeners.HitNotifier;
+import game.levels.gameFunction.GameLevel;
+import game.levels.gameFunction.environment.Collidable;
+import game.levels.gameFunction.environment.Sprite;
+import game.levels.gameFunction.listeners.HitListener;
+import game.levels.gameFunction.listeners.HitNotifier;
 import game.shapes.circles.Ball;
 import game.shapes.circles.Point;
 import game.shapes.circles.Velocity;

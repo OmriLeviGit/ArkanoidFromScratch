@@ -4,11 +4,11 @@
 package game.shapes.circles;
 
 import biuoop.DrawSurface;
-import game.gameFunction.environment.Collidable;
-import game.gameFunction.environment.CollisionInfo;
-import game.gameFunction.environment.GameEnvironment;
-import game.gameFunction.environment.Sprite;
-import game.gameFunction.GameLevel;
+import game.levels.gameFunction.environment.Collidable;
+import game.levels.gameFunction.environment.CollisionInfo;
+import game.levels.gameFunction.environment.GameEnvironment;
+import game.levels.gameFunction.environment.Sprite;
+import game.levels.gameFunction.GameLevel;
 import game.shapes.lines.Line;
 import java.awt.Color;
 

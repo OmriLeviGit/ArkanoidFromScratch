@@ -1,16 +1,15 @@
 // 206573289 Omri Levi
 
 
-package game.gameFunction;
+package game.levels.gameFunction;
 
 import biuoop.KeyboardSensor;
-import game.animation.Animation;
-import game.animation.AnimationRunner;
-import game.animation.KeyPressStoppableAnimation;
-import game.animation.LosingScreen;
-import game.animation.PauseScreen;
-import game.animation.WinningScreen;
-import game.gameFunction.indicatorsAndCounters.Counter;
+import game.animationAndScreens.Animation;
+import game.animationAndScreens.AnimationRunner;
+import game.animationAndScreens.KeyPressStoppableAnimation;
+import game.animationAndScreens.LosingScreen;
+import game.animationAndScreens.WinningScreen;
+import game.levels.gameFunction.indicatorsAndCounters.Counter;
 import game.levels.LevelInformation;
 
 import java.util.List;
@@ -52,24 +51,14 @@ public class GameFlow {
             if (ballsRemained.getValue() == 0) {
                 Animation losingScreen = new LosingScreen(score);
                 Animation keyPress = new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, losingScreen);
-                this.animationRunner.run(keyPress);    // run losing animation
+                this.animationRunner.run(keyPress);         // run losing animation
 
                 return;
             }
         }
-/*
-        Animation winningScreen = new WinningScreen(score);
-        Animation keyPress = new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, winningScreen);
-        this.animationRunner.run(keyPress);    // run winning animation
-
- */
 
         Animation winningScreen = new WinningScreen(score);
         Animation keyPress = new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, winningScreen);
-        Animation pause = new PauseScreen();
-        Animation keyPress2 = new KeyPressStoppableAnimation(keyboard, keyboard.SPACE_KEY, pause);
-
-        this.animationRunner.run(keyPress);    // run losing animation
-        this.animationRunner.run(keyPress2);    // run losing animation
+        this.animationRunner.run(keyPress);         // run winning animation
     }
 }

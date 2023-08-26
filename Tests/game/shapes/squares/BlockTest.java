@@ -2,9 +2,8 @@ package game.shapes.squares;
 
 import biuoop.DrawSurface;
 import biuoop.GUI;
-import game.gameFunction.environment.GameEnvironment;
-import game.gameFunction.GameLevel;
-import game.gameFunction.Initializer;
+import game.levels.gameFunction.environment.GameEnvironment;
+import game.levels.gameFunction.GameLevel;
 import game.miscellaneous.DoubleCompare;
 import game.shapes.circles.Ball;
 import game.shapes.circles.Point;

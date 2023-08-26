@@ -1,10 +1,10 @@
 // 206573289 Omri Levi
 
 
-package game.gameFunction.listeners;
+package game.levels.gameFunction.listeners;
 
-import game.gameFunction.indicatorsAndCounters.Counter;
-import game.gameFunction.GameLevel;
+import game.levels.gameFunction.indicatorsAndCounters.Counter;
+import game.levels.gameFunction.GameLevel;
 import game.shapes.circles.Ball;
 import game.shapes.squares.Block;
 

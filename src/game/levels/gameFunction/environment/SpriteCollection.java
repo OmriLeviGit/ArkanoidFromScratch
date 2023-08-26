@@ -1,7 +1,7 @@
 // 206573289 Omri Levi
 
 
-package game.gameFunction.environment;
+package game.levels.gameFunction.environment;
 
 import biuoop.DrawSurface;
 import java.util.ArrayList;

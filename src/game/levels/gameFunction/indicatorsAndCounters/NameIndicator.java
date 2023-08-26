@@ -1,11 +1,11 @@
 // 206573289 Omri Levi
 
 
-package game.gameFunction.indicatorsAndCounters;
+package game.levels.gameFunction.indicatorsAndCounters;
 
 import biuoop.DrawSurface;
-import game.gameFunction.environment.Sprite;
-import game.gameFunction.GameLevel;
+import game.levels.gameFunction.environment.Sprite;
+import game.levels.gameFunction.GameLevel;
 
 import java.awt.Color;
 
@@ -25,13 +25,13 @@ public class NameIndicator implements Sprite {
     }
 
     @Override
-    public void drawOn(DrawSurface surface) {
-        surface.setColor(Color.BLACK);
+    public void drawOn(DrawSurface d) {
+        d.setColor(Color.BLACK);
 
         int textSize = 15;
         int xText = GameLevel.BORDER_THICKNESS + GameLevel.OFFSET * 2;
         int yText = (GameLevel.BORDER_THICKNESS + textSize) / 2;
 
-        surface.drawText(xText, yText, this.levelName, textSize);
+        d.drawText(xText, yText, this.levelName, textSize);
     }
 }

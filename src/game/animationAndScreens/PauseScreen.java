@@ -1,11 +1,9 @@
 // 206573289 Omri Levi
 
 
-package game.animation;
+package game.animationAndScreens;
 
 import biuoop.DrawSurface;
-import game.gameFunction.GameLevel;
-
 import java.awt.Color;
 
 /**
@@ -15,12 +13,18 @@ public class PauseScreen implements Animation {
 
     @Override
     public void doOneFrame(DrawSurface d) {
-        String text = "paused -- press space to continue";
-        int textSize = 40;
-        int xText = (d.getWidth() - textSize * text.length() / 2) / 2 + GameLevel.BORDER_THICKNESS;
-        int yText = (d.getHeight() + textSize) / 2;
 
         d.setColor(Color.BLACK);
+        String text = "Paused";
+        int textSize = 40;
+        int xText = d.getWidth() / 2 - 65;
+        int yText = (d.getHeight() + textSize) / 2 - 40;
+        d.drawText(xText, yText, text, textSize);
+
+        text = "press 'Space' to continue";
+        textSize = 30;
+        xText = d.getWidth() / 2 - 170;
+        yText = (d.getHeight() + textSize) / 2;
         d.drawText(xText, yText, text, textSize);
     }
 

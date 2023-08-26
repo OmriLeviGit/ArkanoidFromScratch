@@ -1,7 +1,7 @@
 // 206573289 Omri Levi
 
 
-package game.gameFunction.listeners;
+package game.levels.gameFunction.listeners;
 
 import game.shapes.circles.Ball;
 import game.shapes.squares.Block;

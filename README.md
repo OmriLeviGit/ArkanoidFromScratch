@@ -6,6 +6,5 @@ Everything in this project is made from scratch (intersection and collision logi
 
 [link to the game on itch.io](https://olmervii.itch.io/arkanoid)
 
-![gameGif](https://github.com/OmriLeviGit/ArkanoidFromScratch/assets/112550744/253f5e90-c5d8-4543-bc02-fbe8f699fbc5)
-
+![gameGif](https://github.com/OmriLeviGit/ArkanoidFromScratch/assets/112550744/56228507-c19b-43d8-9c38-6c311c6abe75)
 

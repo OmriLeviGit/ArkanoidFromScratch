@@ -22,7 +22,7 @@ public class Prism implements LevelInformation {
 
     @Override
     public int numberOfBalls() {
-        return 5;
+        return 100;
     }
 
     @Override

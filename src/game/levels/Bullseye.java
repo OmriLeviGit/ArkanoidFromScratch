@@ -26,7 +26,7 @@ public class Bullseye implements LevelInformation {
 
     @Override
     public List<Velocity> initialBallVelocities() {
-        return Collections.singletonList(new Velocity(0, 5));
+        return Collections.singletonList(new Velocity(0, -5));
     }
 
     @Override

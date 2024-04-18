@@ -1,10 +1,15 @@
-# ArkanoidFromScratch
+# Arkanoid
 
-Everything in this project is made from scratch (intersection and collision logic, polygons, etc.) except for gui and input methods (keyboard controls, drawing to the screen, etc.).
+## About
+This project is a Java-based implementation of the classic Arkanoid arcade game. It's built entirely from scratch, encompassing everything from intersection and collision logic to polygons and more.
 
-* This is the first time I tried using unit testing, so most of the tests had a bad coupling problem, and weren't built well in the first place. Ended up leaving them as they are since it became a problem close to the end of the project.
 
-[link to the game on itch.io](https://olmervii.itch.io/arkanoid)
 
-![gameGif](https://github.com/OmriLeviGit/ArkanoidFromScratch/assets/112550744/56228507-c19b-43d8-9c38-6c311c6abe75)
+![Gameplay Gif](https://github.com/OmriLeviGit/ArkanoidFromScratch/assets/112550744/56228507-c19b-43d8-9c38-6c311c6abe75)
 
+## How to Play
+- **Controls:** Use the keyboard arrow keys or 'WASD' to control the paddle.
+- **Objective:** Destroy all the bricks on the screen by bouncing the ball off the paddle, while preventing the ball from falling off the bottom of the screen.
+
+## Play Now
+Download the game on [itch.io](https://olmervii.itch.io/arkanoid) to play.
